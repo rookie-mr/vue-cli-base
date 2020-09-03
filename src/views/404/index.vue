@@ -1,13 +1,13 @@
 <template>
-  <h3>{{title}}</h3>
+  <h3>{{tips}}</h3>
 </template>
 
 <script>
 export default {
   data() {
-      return {
-          title: "login"
-      }
+    return {
+      tips: "404 页面未找到！"
+    };
   }
 };
 </script>

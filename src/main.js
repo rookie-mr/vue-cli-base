@@ -7,7 +7,13 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
-const store = new Vuex.Store({})
+const store = new Vuex.Store({
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+  modules: {}
+})
 
 new Vue({
   router,
