@@ -1,6 +1,8 @@
 'use strict'
-// import path from 'path';
-// import settings from './settings.js' 
+// import path from 'path'
+const settings = require('./settings.js')  
 module.exports = {
-    configureWebpack: {}
+    configureWebpack: {
+        name: settings.title
+    }
 }

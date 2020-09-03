@@ -6,23 +6,46 @@ Vue.use(Router)
 const routes = [{
     path: '/login',
     component: () => import('@/views/login'),
-}, {
+}, { // 嵌套命名视图
     path: '/router',
     component: () => import('@/views/router'),
+    meta: { // 
+
+    },
     beforeEnter: (to, from, next) => { // 路由独享拦截
         console.log('路由独享拦截...')
         next(vm => {
             console.log('路由独享拦截：', vm, to, from)
         })
-    }
+    },
+    children: [{
+        path: 'named',
+        components: {
+            default: () => import('@/views/router'),
+            login: () => import('@/views/login'),
+            404: () => import('@/views/404')
+        }
+    }]
 }, {
     path: '*',
     component: () => import('@/views/404'),
 }]
 
 const router = new Router({
-    // mode: 'history',
-    routes
+    // mode: 'history', HTML5 history模式
+    routes,
+    scrollBehavior(to, from, savedPosition) { // 滚动行为
+        // return 期望滚动到哪个的位置 {x: 0, y: 0} 
+        console.log(savedPosition)
+        if (savedPosition) {
+            return savedPosition
+        }
+        if (to.hash) {
+            return {
+                selector: to.hash
+            }
+        }
+    }
 })
 
 // 全局解析守卫
