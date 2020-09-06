@@ -27,6 +27,9 @@ const routes = [{
         }
     }]
 }, {
+    path: '/vuex',
+    component: () => import('@/views/vuex'),
+}, {
     path: '*',
     component: () => import('@/views/404'),
 }]
