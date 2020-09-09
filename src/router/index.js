@@ -30,6 +30,9 @@ const routes = [{
     path: '/vuex',
     component: () => import('@/views/vuex'),
 }, {
+    path: '/icons',
+    component: () => import('@/views/icons'),
+}, {
     path: '*',
     component: () => import('@/views/404'),
 }]
