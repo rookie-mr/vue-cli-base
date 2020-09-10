@@ -18,8 +18,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~@/styles/variables.scss";
-@import "~@/assets/transition.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

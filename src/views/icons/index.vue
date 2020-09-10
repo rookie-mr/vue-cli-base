@@ -1,5 +1,11 @@
 <template>
-  <svg-icon name="logo"></svg-icon>
+  <div>
+    <span v-for="i in 10" :key="i">
+      <svg-icon name="logo"></svg-icon>
+      <svg-icon name="qq"></svg-icon>
+      <svg-icon name="weixin"></svg-icon>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -9,4 +15,7 @@ export default {
 </script>
 
 <style scoped>
+.svg-icon {
+  margin: 5px;
+}
 </style>

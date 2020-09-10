@@ -63,12 +63,12 @@ router.beforeResolve((to, from, next) => {
 })
 
 // 全局前置守卫
-router.beforeEach((to, from, next) => {
-    console.log('全局前置守卫...')
-    next(vm => {
-        console.log('全局前置守卫：', vm, to, from)
-    })
-})
+// router.beforeEach((to, from, next) => {
+//     console.log('全局前置守卫...')
+//     next(vm => {
+//         console.log('全局前置守卫：', vm, to, from)
+//     })
+// })
 
 // 全局后置守卫
 router.afterEach((to, from) => {

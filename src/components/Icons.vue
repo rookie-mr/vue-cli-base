@@ -15,14 +15,18 @@ export default {
   },
   computed: {
     cls() {
-      return `svg-icon svg-icon-${this.name}`
+      return `svg-icon svg-icon-${this.name}`;
     },
     n() {
-      return `#icon-${this.name}`
+      return `#icon-${this.name}`;
     }
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.svg-icon {
+  width: $svg-icon-width;
+  height: $svg-icon-height;
+}
 </style>
