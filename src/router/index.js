@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const routes = [{
+export const constantRoutes = [{
     path: '/login',
     component: () => import('@/views/login'),
 }, { // 嵌套命名视图
@@ -27,19 +27,27 @@ const routes = [{
         }
     }]
 }, {
-    path: '/vuex',
-    component: () => import('@/views/vuex'),
-}, {
-    path: '/icons',
-    component: () => import('@/views/icons'),
-}, {
     path: '*',
     component: () => import('@/views/404'),
 }]
 
-const router = new Router({
+export const asyncRoutes = [{
+    path: '/vuex',
+    component: () => import('@/views/vuex'),
+    meta: {
+        roles: ['admin', 'editor']
+    }
+}, {
+    path: '/icons',
+    component: () => import('@/views/icons'),
+    meta: {
+        roles: ['admin']
+    }
+}]
+
+const createRouter = () => new Router({
     // mode: 'history', HTML5 history模式
-    routes,
+    routes: constantRoutes,
     scrollBehavior(to, from, savedPosition) { // 滚动行为
         // return 期望滚动到哪个的位置 {x: 0, y: 0} 
         console.log(savedPosition)
@@ -54,6 +62,14 @@ const router = new Router({
     }
 })
 
+const router = createRouter()
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher // reset router
+}
+
 // 全局解析守卫
 router.beforeResolve((to, from, next) => {
     console.log('全局解析守卫...')
@@ -63,12 +79,12 @@ router.beforeResolve((to, from, next) => {
 })
 
 // 全局前置守卫
-// router.beforeEach((to, from, next) => {
-//     console.log('全局前置守卫...')
-//     next(vm => {
-//         console.log('全局前置守卫：', vm, to, from)
-//     })
-// })
+router.beforeEach((to, from, next) => {
+    console.log('全局前置守卫...')
+    next(vm => {
+        console.log('全局前置守卫：', vm, to, from)
+    })
+})
 
 // 全局后置守卫
 router.afterEach((to, from) => {

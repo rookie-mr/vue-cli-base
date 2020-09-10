@@ -25,6 +25,9 @@ const store = new Vuex.Store({
     getters: { // 由state派生出的属性
         tips: (state) => (name) => { // 返回一个函数可以传递参数进行处理
             return state.logined ? '欢迎访问' + name : '请登录'
+        },
+        roles: (state) => {
+            return state.user.roles
         }
     },
     mutations: { // 实际开发可将本部分抽取成单独的文件
