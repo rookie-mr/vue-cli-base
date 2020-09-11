@@ -3,7 +3,7 @@
     <h3>{{title}}</h3>
     <router-view></router-view>
     <transition :name="effect.fade">
-      <router-view name="login"></router-view>
+      <router-view name="icons"></router-view>
     </transition>
     <transition :name="effect.slide">
       <router-view name="404"></router-view>

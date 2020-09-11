@@ -18,7 +18,6 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 
 const store = new Vuex.Store({
     state: {
-        user: '',
         logined: false,
         skin: 'default'
     },
@@ -33,11 +32,11 @@ const store = new Vuex.Store({
     mutations: { // 实际开发可将本部分抽取成单独的文件
         login(state, o) { // 默认第一个参数为当前的state，后续参数也称为mutations的载荷，载荷一般为对象
             state.logined = true
-            state.user = o.name
+            state.user.name = o.name
         },
         logout(state, o) {
             state.logined = false
-            state.user = o.name
+            state.user.name = o.name
         }
     },
     actions: { // 实际开发可将本部分抽取成单独的文件

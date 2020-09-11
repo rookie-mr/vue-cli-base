@@ -3,7 +3,7 @@ import {
     setToken,
     removeToken
 } from '@/utils/caches'
-import { resetRouter } from '../../router'
+import { resetRouter } from '@/router'
 
 const state = {
     token: getToken(),
@@ -22,25 +22,25 @@ const mutations = {
     }
 }
 const actions = {
-    login({ commit }, role) {
+    login({ commit }, user) {
         return new Promise(resolve => {
-            commit('SET_TOKEN', role)
-            commit('SET_ROLES', role.split(','))
-            setToken(role)
-            resolve(role)
+            // TODO 根据用户登录后的返回对此处进行设置
+            commit('SET_TOKEN', user) // user.token
+            setToken(user)
+            resolve(user)
         })
     },
     getInfo({
         commit,
-        state
+        // state
     }) {
         return new Promise((resolve) => {
             // const token = state.token
             // TODO 根据当前token获取用户信息
             // 若在登录时已返回用户信息则无需此TODO
-            commit('SET_ROLES', state.roles)
+            commit('SET_ROLES', ['admin'])
             resolve({
-                roles: state.roles
+                roles: ['admin']
             })
         })
     },

@@ -2,7 +2,7 @@
   <div>
     <h3>{{title}}</h3>
     <span>{{tips}}，登录状态：{{logined}}，皮肤：{{skin}}</span>
-    <br />
+    <br><br>
     <transition-group name="slide-fade">
       <button @click="login" v-show="!logined" key="1">登录</button>
       <button @click="logout" v-show="logined" key="2">登出</button>
@@ -37,7 +37,7 @@ export default {
     // }
     // })
     tips() {
-      return this.$store.getters.tips(this.$store.state.user);
+      return this.$store.getters.tips(this.$store.state.user.name);
     },
     ...mapGetters({}),
     ...mapActions({}),

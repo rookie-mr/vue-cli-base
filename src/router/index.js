@@ -6,11 +6,16 @@ Vue.use(Router)
 export const constantRoutes = [{
     path: '/login',
     component: () => import('@/views/login'),
-}, { // 嵌套命名视图
+}, {
+    path: '*',
+    component: () => import('@/views/404'),
+}]
+
+export const asyncRoutes = [{ // 嵌套命名视图
     path: '/router',
     component: () => import('@/views/router'),
     meta: { // 
-
+        roles: ['admin', 'editor']
     },
     beforeEnter: (to, from, next) => { // 路由独享拦截
         console.log('路由独享拦截...')
@@ -22,16 +27,14 @@ export const constantRoutes = [{
         path: 'named',
         components: {
             default: () => import('@/views/router'),
-            login: () => import('@/views/login'),
+            icons: () => import('@/views/icons'),
             404: () => import('@/views/404')
+        },
+        meta: {
+            roles: ['admin']
         }
     }]
 }, {
-    path: '*',
-    component: () => import('@/views/404'),
-}]
-
-export const asyncRoutes = [{
     path: '/vuex',
     component: () => import('@/views/vuex'),
     meta: {
@@ -50,7 +53,6 @@ const createRouter = () => new Router({
     routes: constantRoutes,
     scrollBehavior(to, from, savedPosition) { // 滚动行为
         // return 期望滚动到哪个的位置 {x: 0, y: 0} 
-        console.log(savedPosition)
         if (savedPosition) {
             return savedPosition
         }
@@ -70,7 +72,7 @@ export function resetRouter() {
     router.matcher = newRouter.matcher // reset router
 }
 
-// 全局解析守卫
+// 全局解析守卫——在导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后被调用。
 router.beforeResolve((to, from, next) => {
     console.log('全局解析守卫...')
     next(vm => {
