@@ -1,6 +1,8 @@
 <template>
   <div>
     <h3>{{title}}</h3>
+    <button v-permission="['admin']">admin can see me</button>
+    <button v-permission="['editor']">editor can see me</button>
     <router-view></router-view>
     <transition :name="effect.fade">
       <router-view name="icons"></router-view>
@@ -12,7 +14,9 @@
 </template>
 
 <script>
+import permission from '@/directive/permission'
 export default {
+  directives: { permission },
   data() {
     return {
       title: "Vue Router",
