@@ -6,6 +6,11 @@ import store from './store'
 import '@/icons'
 import '@/permission'
 
+import * as filters from '@/filters'
+Object.keys(filters).forEach((key) => {
+  Vue.filter(key, filters[key])
+})
+
 Vue.config.productionTip = false
 
 new Vue({

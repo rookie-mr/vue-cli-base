@@ -1,8 +1,8 @@
 <template>
   <div>
     <h3>{{title}}</h3>
-    <button v-permission="['admin']">admin can see me</button>
-    <button v-permission="['editor']">editor can see me</button>
+    <button v-permission="['admin']">{{'admin can see me' | capitalize}}</button>
+    <button v-permission="['editor']">{{'editor can see me' | capitalize}}</button>
     <router-view></router-view>
     <transition :name="effect.fade">
       <router-view name="icons"></router-view>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import permission from '@/directive/permission'
+import permission from "@/directive/permission";
 export default {
   directives: { permission },
   data() {
@@ -22,8 +22,8 @@ export default {
       title: "Vue Router",
       effect: {
         fade: "fade",
-        slide: "slide-fade",
-      },
+        slide: "slide-fade"
+      }
     };
   },
   created() {
@@ -38,24 +38,24 @@ export default {
   beforeRouteEnter(to, from, next) {
     // ...
     console.log("beforeRouteEnter...");
-    next((vm) => {
+    next(vm => {
       console.log("beforeRouteEnter", vm, to, from);
     });
   },
   beforeRouterUpdate(to, from, next) {
     // ...
     console.log("beforeRouterUpdate...");
-    next((vm) => {
+    next(vm => {
       console.log("beforeRouterUpdate", vm, to, from);
     });
   },
   beforeRouteLeave(to, from, next) {
     // ...
     console.log("beforeRouteLeave...");
-    next((vm) => {
+    next(vm => {
       console.log("beforeRouteLeave", vm, to, from);
     });
-  },
+  }
 };
 </script>
 
