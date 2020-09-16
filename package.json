@@ -9,6 +9,7 @@
     "test": "jest --config jest.config.js"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.4.1",

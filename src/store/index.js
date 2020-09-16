@@ -27,6 +27,9 @@ const store = new Vuex.Store({
         },
         roles: (state) => {
             return state.user.roles
+        },
+        token: (state) => {
+            return state.user.token
         }
     },
     mutations: { // 实际开发可将本部分抽取成单独的文件

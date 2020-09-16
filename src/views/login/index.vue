@@ -18,6 +18,12 @@ export default {
   },
   methods: {
     login() {
+      this.$http({
+        method: 'post',
+        url: '/login'
+      }).then((res) => {
+        console.log(res)
+      })
       this.$store.dispatch('user/login', this.role)
       // 找到重定向路径或者系统首页
       const redirect = this.$route.query?.redirect || '/'

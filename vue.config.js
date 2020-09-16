@@ -9,7 +9,7 @@ function addStyleResource(rule) {
     rule.use('style-resource')
         .loader('style-resources-loader')
         .options({ // 引入合并后的注入项 
-            patterns: [resolve('./src/styles/index.scss')] 
+            patterns: [resolve('./src/styles/index.scss')]
         })
 }
 
@@ -20,7 +20,7 @@ module.exports = {
     chainWebpack: config => {
         const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
         types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
-        
+
         config.module.rule('svg')
             .exclude.add(resolve('./src/icons'))
 
@@ -30,5 +30,15 @@ module.exports = {
             .use('svg-sprite-loader')
             .loader('svg-sprite-loader')
             .options({ symbolId: 'icon-[name]' })
+    },
+    devServer: {
+        proxy: {
+            '/dev-api': {
+                target: 'http://127.0.0.1:9527',
+                ws: true,
+                changeOrigin: true,
+                pathRewrite: {'^/dev-api' : '/api'}
+            }
+        }
     }
 }
