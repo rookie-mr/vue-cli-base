@@ -7,6 +7,9 @@ export const constantRoutes = [{
     path: '/login',
     component: () => import('@/views/login'),
 }, {
+    path: '/sticky',
+    component: () => import('@/views/sticky'),
+}, {
     path: '*',
     component: () => import('@/views/404'),
 }]
