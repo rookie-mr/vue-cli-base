@@ -59,11 +59,11 @@ const Sticky = {
                 const check = () => {
                     const scrollTop = getScroll(window, true)
                     const offsetTop = el.getBoundingClientRect().top
-                    console.log(9527, scrollTop, offsetTop)
-                    if (scrollTop > offsetTop) {
+                    console.log(9527, scrollTop, offsetTop, top, height)
+                    if (offsetTop < top) {
                         sticky()
                     } else {
-                        if (scrollTop < height + top) {
+                        if (scrollTop < (height + top)) {
                             reset()
                         }
                     }
