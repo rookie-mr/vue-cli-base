@@ -29,8 +29,7 @@ export const asyncRoutes = [{ // 嵌套命名视图
     children: [{
         path: 'named',
         components: {
-            default: () => import('@/views/router'),
-            icons: () => import('@/views/icons'),
+            default: () => import('@/views/icons'),
             404: () => import('@/views/404')
         },
         meta: {
