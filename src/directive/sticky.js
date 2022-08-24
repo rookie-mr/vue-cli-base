@@ -10,6 +10,9 @@ const Sticky = {
                 style.position = '-webkit-sticky'
                 style.position = 'sticky'
 
+                let origin = {
+                    top: el.offsetTop
+                }
                 const height = el.getBoundingClientRect().height
                 const width = el.getBoundingClientRect().width
                 style.cssText = `top:${top}px;z-index:${index}px;`
@@ -59,11 +62,11 @@ const Sticky = {
                 const check = () => {
                     const scrollTop = getScroll(window, true)
                     const offsetTop = el.getBoundingClientRect().top
-                    console.log(9527, scrollTop, offsetTop, top, height)
                     if (offsetTop < top) {
                         sticky()
                     } else {
-                        if (scrollTop < (height + top)) {
+                        // TODO 找到元素距离视口顶部的初始高度差，目前这个存在误差
+                        if (scrollTop < origin.top) {
                             reset()
                         }
                     }
